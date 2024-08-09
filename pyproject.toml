@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "teste-brain-ag"
+version = "0.1.0"
+description = ""
+authors = ["mateu <mateus.vidotti@idgeo.com.br>"]
+readme = "README.md"
+packages = [{include = "teste_brain_ag"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+django = "^5.1"
+django-rest-framework = "^0.1.0"
+django-cnpjfield = "^1"
+django-cpf = "^0.1.0"
+django-cors-headers = "^4.4.0"
+django-extensions = "^3.2.3"
+psycopg2-binary = "^2.9.9"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
