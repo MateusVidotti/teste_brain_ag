@@ -1,21 +1,34 @@
-FROM python:3.11.4-slim
-WORKDIR /code
+ARG PYTHON_VERSION=3.11-slim-bullseye
 
-# variáveis para desenvolvimento
+FROM python:${PYTHON_VERSION}
+
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-ENV PYTHONPATH /code
+# install psycopg2 dependencies.
+RUN apt-get update && apt-get install -y \
+    libpq-dev \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip && \
-    pip install poetry && \
-    poetry config virtualenvs.create false
+RUN mkdir -p /code
 
-# Instala apenas as dependências.
-COPY ./brain .
-COPY pyproject.toml poetry.lock ./
-RUN poetry install --no-root --only main
+WORKDIR /code
 
-COPY ./brain/start-django /start-django
-RUN sed -i 's/\r$//g' /start-django
-RUN chmod +x /start-django
+COPY requirements.txt /tmp/requirements.txt
+RUN set -ex && \
+    pip install --upgrade pip && \
+    pip install -r /tmp/requirements.txt && \
+    rm -rf /root/.cache/
+COPY . /code
+
+RUN python manage.py makemigrations
+RUN python manage.py migrate
+ENV DJANGO_SUPERUSER_USERNAME="admin"
+ENV DJANGO_SUPERUSER_EMAIL="admin@admin.com"
+ENV DJANGO_SUPERUSER_PASSWORD="admin"
+RUN python manage.py ensure_adminuser --no-input
+
+EXPOSE 8000
+
+CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "setup.wsgi"]

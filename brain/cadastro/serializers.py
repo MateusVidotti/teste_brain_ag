@@ -1,4 +1,3 @@
-from django.db.models import Sum, Count
 from rest_framework import serializers
 from cadastro.models import Produtor, Fazenda, AreaAgricultavel
 
