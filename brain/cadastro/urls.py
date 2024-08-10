@@ -1,12 +1,13 @@
 from django.urls import path, include
-from rest_framework.routers import DefaultRouter
 from cadastro.views import CadastroProdutorView, DashboardFazendasView
+from rest_framework import routers, serializers, viewsets
 
-router = DefaultRouter()
-router.register(r'api/cadastro_produtores', CadastroProdutorView)
+# adiciona os cadastro_produtores
+router = routers.DefaultRouter()
+router.register(r'cadastro_produtores', CadastroProdutorView)
 
 urlpatterns = [
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
     path('api/dashboard_fazendas', DashboardFazendasView.as_view(), name='dashboard_fazendas')
 ]
 
