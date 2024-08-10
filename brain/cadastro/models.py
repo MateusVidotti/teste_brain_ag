@@ -7,13 +7,13 @@ CULTURA_SOJA = 'Soja'
 CULTURA_MILHO = "Milho"
 CULTURA_ALGODAO = "Algodão"
 CULTURA_CAFE = "Café"
-CULTURA_CANA_DE_AÇUCAR = "Cana-de-açucar"
+CULTURA_CANA_DE_AÇUCAR = "Cana-de-açúcar"
 CULTURA_CHOICES = (
     (CULTURA_SOJA, 'Soja'),
     (CULTURA_MILHO, 'Milho'),
     (CULTURA_ALGODAO, 'Algodao'),
     (CULTURA_CAFE, 'Café'),
-    (CULTURA_CANA_DE_AÇUCAR, 'Cana-de-açucar'),
+    (CULTURA_CANA_DE_AÇUCAR, 'Cana-de-açúcar'),
 )
 
 
