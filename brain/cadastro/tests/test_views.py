@@ -21,7 +21,7 @@ class DashboardFazendasViewTest(TestCase):
 
     def test_dashboard_fazendas_view(self):
         # Faz uma requisição GET para a view de dashboard
-        url = reverse('dashboard_fazendas')
+        url = reverse('dashboard_fazendas-list')
         response = self.client.get(url)  # Altere a URL para a rota correta
 
         # Verifica se a resposta foi bem-sucedida

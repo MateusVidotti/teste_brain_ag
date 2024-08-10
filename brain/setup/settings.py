@@ -40,7 +40,7 @@ CSRF_TRUSTED_ORIGINS = [f"https://{APP_NAME}.fly.dev"]
 INSTALLED_APPS = [
     'corsheaders',
     'cpf_field',
-     'cnpj_field',
+    'cnpj_field',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

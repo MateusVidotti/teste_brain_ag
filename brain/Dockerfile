@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.11.4-slim
+ARG PYTHON_VERSION=3.11.9-slim-bullseye
 
 FROM python:${PYTHON_VERSION}
 
@@ -22,7 +22,7 @@ RUN set -ex && \
     rm -rf /root/.cache/
 COPY . /code
 
-RUN python manage.py makemigrations
+RUN python manage.py makemigrations cadastro
 RUN python manage.py migrate
 ENV DJANGO_SUPERUSER_USERNAME="admin"
 ENV DJANGO_SUPERUSER_EMAIL="admin@admin.com"

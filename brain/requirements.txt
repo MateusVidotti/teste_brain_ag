@@ -1,0 +1,11 @@
+asgiref==3.8.1
+Django==5.1
+django-CNPJField==1
+django-cors-headers==4.4.0
+django-cpf==0.1.0
+django-extensions==3.2.3
+django-rest-framework==0.1.0
+djangorestframework==3.15.2
+gunicorn==22.0.0
+packaging==24.1
+sqlparse==0.5.1
