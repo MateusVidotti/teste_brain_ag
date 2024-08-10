@@ -5,9 +5,9 @@ from rest_framework import routers, serializers, viewsets
 # adiciona os cadastro_produtores
 router = routers.DefaultRouter()
 router.register(r'cadastro_produtores', CadastroProdutorView)
+router.register(r'dashboard_fazendas', DashboardFazendasView, basename='dashboard_fazendas')
+
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('api/dashboard_fazendas', DashboardFazendasView.as_view(), name='dashboard_fazendas')
 ]
-
