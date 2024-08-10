@@ -1,4 +1,4 @@
-ARG PYTHON_VERSION=3.11-slim-bullseye
+ARG PYTHON_VERSION=3.11.4-slim
 
 FROM python:${PYTHON_VERSION}
 
@@ -28,7 +28,7 @@ ENV DJANGO_SUPERUSER_USERNAME="admin"
 ENV DJANGO_SUPERUSER_EMAIL="admin@admin.com"
 ENV DJANGO_SUPERUSER_PASSWORD="admin"
 RUN python manage.py ensure_adminuser --no-input
-
+RUN python manage.py collectstatic --noinput
 EXPOSE 8000
 
 CMD ["gunicorn", "--bind", ":8000", "--workers", "2", "setup.wsgi"]

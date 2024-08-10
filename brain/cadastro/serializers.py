@@ -143,4 +143,3 @@ class DashboardFazendasSerializer(serializers.Serializer):
     grafico_pizza_estado = serializers.DictField(child=serializers.FloatField())
     grafico_pizza_cultura = serializers.DictField(child=serializers.FloatField())
     grafico_pizza_uso_solo = serializers.DictField(child=serializers.FloatField())
-
