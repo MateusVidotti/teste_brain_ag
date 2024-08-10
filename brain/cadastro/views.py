@@ -1,7 +1,6 @@
 from cadastro.models import AreaAgricultavel, Fazenda, Produtor
 from cadastro.serializers import CadastroProdutorSerializer, DashboardFazendasSerializer
-from django.db.models import F, FloatField, Sum, Value
-from django.db.models.functions import Coalesce
+from django.db.models import FloatField, Sum
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
