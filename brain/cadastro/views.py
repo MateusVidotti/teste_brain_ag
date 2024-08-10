@@ -4,7 +4,6 @@ from django.db.models import FloatField, Sum
 from rest_framework import viewsets
 from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
-from rest_framework.views import APIView
 
 
 class CadastroProdutorView(viewsets.ModelViewSet):
@@ -12,16 +11,17 @@ class CadastroProdutorView(viewsets.ModelViewSet):
     serializer_class = CadastroProdutorSerializer
 
 
-class DashboardFazendasView(APIView):
+class DashboardFazendasView(viewsets.ReadOnlyModelViewSet):
     """Retorna os dados para compor o dashboard de fazendas"""
     permission_classes = [AllowAny]
+    serializer_class = DashboardFazendasSerializer
 
-    def get(self, request, format=None):
+    def list(self, request, *args, **kwargs):
         # Calcula o total de fazendas e a soma das áreas
         total_fazendas_quantidade = Fazenda.objects.count()
         total_fazendas_hectares = Fazenda.objects.aggregate(
             total_area=Sum('area_total', output_field=FloatField()))['total_area'] or 0.0
-        # grafico de pizza por estado
+        # Gráfico de pizza por estado
         grafico_pizza_estado = Fazenda.objects.values('estado').annotate(
             total_area=Sum('area_total', output_field=FloatField()))
         # Converte o queryset para um dicionário
@@ -32,6 +32,7 @@ class DashboardFazendasView(APIView):
             total_area=Sum('area_agricultavel', output_field=FloatField()))
         # Converte o queryset para um dicionário
         grafico_pizza_cultura = {item['cultura']: item['total_area'] for item in grafico_pizza_cultura}
+
         # Gráfico de pizza por uso do solo (área agricultável e vegetação)
         total_area_vegetacao = Fazenda.objects.aggregate(
             area_vegetacao=Sum('area_vegetacao', output_field=FloatField()))['area_vegetacao'] or 0.0
@@ -49,6 +50,6 @@ class DashboardFazendasView(APIView):
             }
         }
 
-        serializer = DashboardFazendasSerializer(data=data)
+        serializer = self.get_serializer(data=data)
         serializer.is_valid(raise_exception=True)
         return Response(serializer.data)
