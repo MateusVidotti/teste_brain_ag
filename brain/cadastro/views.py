@@ -7,12 +7,13 @@ from rest_framework.response import Response
 
 
 class CadastroProdutorView(viewsets.ModelViewSet):
+    """Cadastros de produtores"""
     queryset = Produtor.objects.all()
     serializer_class = CadastroProdutorSerializer
 
 
 class DashboardFazendasView(viewsets.ReadOnlyModelViewSet):
-    """Retorna os dados para compor o dashboard de fazendas"""
+    """Dashboard das fazendas"""
     permission_classes = [AllowAny]
     serializer_class = DashboardFazendasSerializer
 
