@@ -6,12 +6,12 @@
 - Acesse o diretório e execute`docker-compose up --build`
 - URL api cadastro de produtores: http://localhost:8000/api/cadastro_produtores (user: admin, password: admin)
 - URL api dashboard fazendas http://localhost:8000/api/dashboard_fazendas
-- No arquivo `.env` estão as variáveis de ambiente
+- No arquivo [.env](.env) estão as variáveis de ambiente
 
 ### Para testar na web
 - URL: https://brain-misty-cloud-8929.fly.dev/api/ 
 - Credenciais do djangorestframework (user: admin, password: admin)
-- Exemplos de [json](cadastro/docs/sql_data_teste.sql) para cadastro de produtores 
+- Exemplos de [json](brain/cadastro/docs/sql_data_teste.json) para cadastro de produtores 
 
 ### Serviços utilizados
 - banco de dados: PostgreSQL
